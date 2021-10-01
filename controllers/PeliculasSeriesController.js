@@ -1,9 +1,9 @@
-const {peliculasSeries} = require('../models/index');
+const {peliculasSeries} = require('../models/index')
 
 module.exports = {
 
     guardarPeliculaSerie( req, res){
-        peliculasSeries.create({
+       peliculasSeries.create({
                 titulo: req.body.titulo,
                 imagen: req.body.imagen,
                 fecha_creacion: req.body.fecha_creacion,
@@ -14,10 +14,10 @@ module.exports = {
 
 
             res.json({
-                peliculaSerie: peliculaSerie,
+                peliculasSerie: peliculaSerie,
             });
         }).catch( err => {
-            res.status(500).json('Ocurrio un error',err);
+            res.status(500).json(err);
         });
     }
 }

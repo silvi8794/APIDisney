@@ -1,4 +1,5 @@
 const express = require('express');
+const {Personajes} = require('../models/index');
 
 const router = express.Router();
 
@@ -15,11 +16,25 @@ router.post('/auth/register', AuthController.register);
 router.post('/auth/login', AuthController.login);
 
 
+
+
+
 //Rutas para los personajes
 ///Crear personaje
 router.post('/characters', PersonajesController.guardarPersonaje);
+//Listar personajes
+router.get('/characters', (req, res) => { 
+                        Personajes.findAll({attributes: ['nombre', 'imagen']})
+                        .then( personajes => res.json(personajes))
+                        .catch(
+                            err => console.log(err)
+                        ); 
+                    } );
 
 
+
+
+                    
 //Rutas para las peliculas y series
 ///Crear 
 router.post('/movies', PeliculasSeriesController.guardarPeliculaSerie);

@@ -1,5 +1,6 @@
 const {Personajes} = require('../models/index');
 
+
 module.exports = {
 
     guardarPersonaje( req, res){
@@ -19,5 +20,8 @@ module.exports = {
         }).catch( err => {
             res.status(500).json('No se guardo al personaje',err);
         });
-    }
+    },
+
+
+  
 }
