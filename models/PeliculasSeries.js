@@ -1,5 +1,5 @@
 'use strict';
-const {Generos} = require('../models/index');
+
 const {
   Model
 } = require('sequelize');
@@ -52,10 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         {as: "generos",  foreignKey:"genero_id"});
   };
 
-/*   Generos.associate = function(models){
-    Generos.belongsTo(models.peliculasSeries,
-      {as: 'peliculasSeries', foreignKey:'generos_id'})
-  } */
+
   
   return PeliculasSeries;
 };

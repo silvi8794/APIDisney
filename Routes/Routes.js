@@ -1,6 +1,6 @@
 const express = require('express');
 const {Personajes} = require('../models/index');
-
+const {peliculasSeries} = require('../models/index')
 const router = express.Router();
 
 //Controlador Auth
@@ -38,5 +38,13 @@ router.get('/characters', (req, res) => {
 //Rutas para las peliculas y series
 ///Crear 
 router.post('/movies', PeliculasSeriesController.guardarPeliculaSerie);
+// Listar Peliculas
+router.get('/movies', (req, res) => { 
+    peliculasSeries.findAll()
+    .then( peliculaSerie => res.json(peliculaSerie))
+    .catch(
+        err => console.log(err)
+    ); 
+} );
 
 module.exports = router;
