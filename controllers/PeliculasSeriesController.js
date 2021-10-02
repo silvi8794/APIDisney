@@ -46,6 +46,24 @@ module.exports = {
              res.status(500).send(err);
          });    
          
-     }); }
+     }); },
+
+
+
+     
+    // Realiza una baja fisica de la pelicula o serie
+  async borrarPeliculaoSerie( req, res) {
+    let peliculaoserie = await peliculasSeries.findOne({where: {id: req.params.id}})
+    .catch(err=> 
+     { res.json(err)}
+     )
+     if( !peliculaoserie){
+         res.json("El personaje no existe")
+     }else {
+         peliculaoserie.destroy();
+     }
+
+         
+}
 
     }

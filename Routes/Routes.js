@@ -35,6 +35,9 @@ router.get('/characters', (req, res) => {
 //Actualizar a un personaje
 router.put(`/characters/:id`, PersonajesController.actualizaPersonaje);
 
+// Borra definitivamente al personaje de la base de datos
+router.delete(`/characters/:id`, PersonajesController.borrarPersonaje);
+
 
                     
 //Rutas para CRUD de peliculas y series
@@ -53,5 +56,8 @@ router.get('/movies', (req, res) => {
 
 //Actualizar a una pelicula
 router.put(`/movies/:id`, PeliculasSeriesController.actualizaPelicula);
+
+// Borra definitivamente a la pelicula de la base de Datos
+router.delete(`/movies/:id`, PeliculasSeriesController.borrarPeliculaoSerie);
 
 module.exports = router;

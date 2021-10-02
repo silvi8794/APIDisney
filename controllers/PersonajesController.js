@@ -51,6 +51,19 @@ module.exports = {
         
     } ,
 
-    personajeDetalle(){}
+    // Realiza una baja fisica
+  async borrarPersonaje( req, res) {
+       let personaje = await Personajes.findOne({where: {id: req.params.id}})
+       .catch(err=> 
+        { res.json(err)}
+        )
+        if( !personaje){
+            res.json("El personaje no existe")
+        }else {
+            personaje.destroy();
+        }
+
+            
+   }
   
 }
