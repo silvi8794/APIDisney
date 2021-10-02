@@ -2,7 +2,7 @@ const {Personajes} = require('../models/index');
 
 
 module.exports = {
-
+    // Inserta un personaje en la base de datos
     guardarPersonaje( req, res){
         Personajes.create({
                 nombre: req.body.nombre,
@@ -23,5 +23,34 @@ module.exports = {
     },
 
 
+   // Actualiza el Personaje 
+   async actualizaPersonaje(req, res) {
+     
+       // const personaje = req.body;
+        //const {id}= req.params
+        
+           
+
+           Personajes.update({
+
+                nombre: req.body.nombre,
+                edad: req.body.edad,
+                peso: req.body.peso,
+                historia: req.body.historia,
+                imagen: req.body.imagen,
+
+           },{ where: {
+               id: req.params.id,
+           }})
+        .then(personajeActualizado => {
+            res.json({personaje: personajeActualizado});
+        })
+        .catch(err => {
+            res.status(500).send(err);
+        });    
+        
+    } ,
+
+    personajeDetalle(){}
   
 }

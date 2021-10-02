@@ -19,10 +19,11 @@ router.post('/auth/login', AuthController.login);
 
 
 
-//Rutas para los personajes
-///Crear personaje
+//Rutas para CRUD personajes
+///Ruta para la creacion de Personajes
 router.post('/characters', PersonajesController.guardarPersonaje);
-//Listar personajes
+
+//Ruta para el Listado de personajes, solo devuelve el nombre y las imagenes del mismo
 router.get('/characters', (req, res) => { 
                         Personajes.findAll({attributes: ['nombre', 'imagen']})
                         .then( personajes => res.json(personajes))
@@ -31,14 +32,17 @@ router.get('/characters', (req, res) => {
                         ); 
                     } );
 
-
+//Actualizar a un personaje
+router.put(`/characters/:id`, PersonajesController.actualizaPersonaje);
 
 
                     
-//Rutas para las peliculas y series
-///Crear 
+//Rutas para CRUD de peliculas y series
+///Ruta para cargar las peliculas o Series
 router.post('/movies', PeliculasSeriesController.guardarPeliculaSerie);
-// Listar Peliculas
+
+
+// Ruta para el listado de peliculas
 router.get('/movies', (req, res) => { 
     peliculasSeries.findAll()
     .then( peliculaSerie => res.json(peliculaSerie))
@@ -46,5 +50,8 @@ router.get('/movies', (req, res) => {
         err => console.log(err)
     ); 
 } );
+
+//Actualizar a una pelicula
+router.put(`/movies/:id`, PeliculasSeriesController.actualizaPelicula);
 
 module.exports = router;
