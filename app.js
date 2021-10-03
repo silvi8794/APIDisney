@@ -3,6 +3,7 @@ const app = express();
 
 
 
+
 //Middleware para poder cargar el req.body(
 app.use(express.json());
 app.use( express.urlencoded({extended: false}));

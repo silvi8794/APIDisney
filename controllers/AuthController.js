@@ -1,7 +1,9 @@
 const {User} = require('../models/index');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const authConfig = require('../config/auth')
+const authConfig = require('../config/auth');
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 
 module.exports = {
@@ -66,6 +68,24 @@ module.exports = {
                 //Tiempo que durara el token = Tiempo autorizados en la app
                 expiresIn: authConfig.expires
             });
+
+
+                      const msg = {
+                             to: req.body.email, // Change to your recipient
+                            from: 'silvi7394@gmail.com', // Change to your verified sender
+                            subject: 'Bienvenido ',
+                            text: 'Bienvenido a API DISNEY ',
+                            html: '<strong> :) </strong>',
+                       }
+                           sgMail
+                            .send(msg)
+                               .then(() => {
+                                 console.log('Email sent')
+                               })
+                              .catch((error) => {
+                                   console.error(error)
+                                });
+
             res.json({
                 user: user,
                 token: token
